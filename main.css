@@ -1,0 +1,27 @@
+.body {
+    background-color:blanchedalmond;
+}
+
+.p {
+    color:rgb(150, 73, 1); 
+    font-weight:bold;
+}
+
+.head {
+    background-color: burlywood;
+}
+
+.foot {
+    background-color: black;
+    height: 200px;
+    width: full;
+}
+
+.box {
+    padding-left: 30px;
+    padding-top: 20px;
+}
+
+a:link {
+    color: burlywood;
+}
