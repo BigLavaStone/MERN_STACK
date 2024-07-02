@@ -14,7 +14,7 @@
 .foot {
     background-color: black;
     height: 200px;
-    width: full;
+    width: 100%;
 }
 
 .box {
@@ -22,6 +22,11 @@
     padding-top: 20px;
 }
 
-a:link {
+a {
+    color: burlywood;
+    text-decoration: none;
+}
+
+#test {
     color: burlywood;
 }
