@@ -19,12 +19,12 @@
                 background-color: cadetblue;
                 border-radius: 10px;
                 width: 250px;
-                overflow: hidden;
-                box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.15), 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+                /* overflow: hidden; */
+                box-shadow: 0px 12px 24px 0px rgba(0, 0, 0, 0.15), 0px 8px 16px 0px rgba(0, 0, 0, 0.12);
             }
             
             #display {
-                /* padding-top: 7px; */
+                padding: 10px;
                 text-align: end;
             }
 
@@ -32,13 +32,14 @@
                 border: 2px solid black; 
                 border-radius: 10px; 
                 padding: 3px;
-                margin: 10px;
+                margin: 0px;
                 background-color: darkslategrey; 
                 font-size: 35px; 
                 color:aliceblue; 
+                height: 50px
             }
 
-            #Buttons {
+            #buttons {
                 padding: 7px;
                 display: grid;
                 grid-template-columns: repeat(4, 1fr);
@@ -79,34 +80,82 @@
             .eqBtn:hover {
                 background-color: #FF6A3D;
             }
-
+            
+            #extra {
+                padding: 0px 7px 7px;
+                display: grid;
+                grid-template-columns: repeat(2,1fr);
+            }
         </style>
     </head>
     <body>
         <main id="main">
             <div id="calculator">
                 <div id="display">
-                    <p id="outScreen">0</p>
+                    <p id="outScreen"></p>
                 </div>
-                <div id="Buttons">
-                    <button class="btn">7</button>
-                    <button class="btn">8</button>
-                    <button class="btn">9</button>
-                    <button class="operBtn">÷</button>
-                    <button class="btn">4</button>
-                    <button class="btn">5</button>
-                    <button class="btn">6</button>
-                    <button class="operBtn">×</button>
-                    <button class="btn">1</button>
-                    <button class="btn">2</button>
-                    <button class="btn">3</button>
-                    <button class="operBtn">-</button>
-                    <button class="operBtn">.</button>
-                    <button class="btn">0</button>
-                    <button class="operBtn">+</button>
-                    <button class="eqBtn">=</button>
+                <div id="buttons">
+                    <button class="btn" value="7" onclick="enter(this.value)">7</button>
+                    <button class="btn" value="8" onclick="enter(this.value)">8</button>
+                    <button class="btn" value="9" onclick="enter(this.value)">9</button>
+                    <button class="operBtn" value="/" onclick="enter(this.value)">÷</button>
+                    <button class="btn" value="4" onclick="enter(this.value)">4</button>
+                    <button class="btn" value="5" onclick="enter(this.value)">5</button>
+                    <button class="btn" value="6" onclick="enter(this.value)">6</button>
+                    <button class="operBtn" value="*" onclick="enter(this.value)">×</button>
+                    <button class="btn" value="1" onclick="enter(this.value)">1</button>
+                    <button class="btn" value="2" onclick="enter(this.value)">2</button>
+                    <button class="btn" value="3" onclick="enter(this.value)">3</button>
+                    <button class="operBtn" value="-" onclick="enter(this.value)">-</button>
+                    <button class="operBtn" value="." onclick="enter(this.value)">.</button>
+                    <button class="btn" value="0" onclick="enter(this.value)">0</button>
+                    <button class="operBtn" value="+" onclick="enter(this.value)">+</button>
+                    <button class="eqBtn" value="=" onclick="calculate()" on>=</button>
+                </div>
+                <div id="extra">
+                    <button class="eqBtn" onclick="del()">DEL</button>
+                    <button class="eqBtn" onclick="document.getElementById('outScreen').innerHTML = ''">AC</button>
                 </div>
             </div>
         </main>
     </body>
 </html>
+<script>
+    let input, output, operator, isOperator;
+    function calculate() {
+        let num1, num2;
+        input = document.getElementById('outScreen').innerHTML;
+        num1 = Number(input.split(operator)[0]);
+        num2 = Number(input.split(operator)[1]);
+
+        if (operator == '/') {
+            document.getElementById('outScreen').innerHTML = num1 / num2;
+        } else if (operator == '*') {
+            document.getElementById('outScreen').innerHTML = num1 * num2;
+        } else if (operator == '-') {
+            document.getElementById('outScreen').innerHTML = num1 - num2;
+        } else if (operator == '+') {
+            document.getElementById('outScreen').innerHTML = num1 + num2;
+        }
+    }
+
+    function enter(data) {
+        input = document.getElementById('outScreen').innerHTML;
+        document.getElementById('outScreen').innerHTML = input + data;
+        console.log(input);
+        if (data == '/' || data == '*' || data == '-' || data == '+') {
+            operator = data;
+            isOperator = True;
+        }
+    }
+
+    function del() {
+        input = document.getElementById('outScreen').innerHTML;
+        document.getElementById('outScreen').innerHTML = input.substr(0, input.length - 1);
+    }
+
+    function clear() {
+        document.getElementById('outScreen').innerHTML = '';
+    }
+
+</script>
